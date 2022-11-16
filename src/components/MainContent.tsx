@@ -1,5 +1,3 @@
-import { DriverEvaluations } from "./DriverEvaluations";
-
 export const MainContent = () => {
   /*  function reset() {
     const dropdown = document.querySelector('#dropdownExample');
@@ -17,7 +15,28 @@ export const MainContent = () => {
           </sdds-dropdown-option>
         </sdds-dropdown>
       </div>
-      <sdds-table body-data="">
+      <sdds-table
+        body-data='[{"driver":"Marcus Lundberg","company":"Aris FC","distance": 75044,"score": 52},
+  {
+    "driver": "Marcus Mena Pachero",
+    "company": "Lio LTD",
+    "distance": 129417,
+    "score": 95
+  },
+  {
+    "driver": "Valentine Ichtertz",
+    "company": "LOTS Group",
+    "distance": 244656,
+    "score": 67
+  },
+  {
+    "driver": "Niklas Rosén",
+    "company": "DD Interactive",
+    "distance": "200 000",
+    "score": 78
+  }
+]'
+      >
         <sdds-header-cell
           column-key="driver"
           column-title="Driver"
