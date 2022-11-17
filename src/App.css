@@ -1,4 +1,13 @@
 #class {
   color: var(--sdds-blue-900);
   font-weight: bolder;
+  font-size: 22px;
+  margin: 5px 0 5px 15px;
+}
+
+#header {
+}
+
+.dropdown-wrapper {
+  width: 208px;
 }

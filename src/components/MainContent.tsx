@@ -1,45 +1,60 @@
-export const MainContent = () => {
-  /*  function reset() {
-    const dropdown = document.querySelector('#dropdownExample');
-    dropdown.resetOption();
-  } */
+// @ts-nocheck
 
-  function handleClick1() {}
+import { useEffect, useState } from "react";
+import data from "../data.json";
+
+export const MainContent = () => {
+  const [value, setValue] = useState("");
+
+  function filterArray() {
+    if (value === ">200.000 km") {
+      const updatedMap = data.filter(
+        (value) =>
+          parseInt(value.distance.replace(" km", "").replace(",", "")) > 200000
+      );
+      return JSON.stringify(updatedMap);
+    } else if (value === "<=200.000 km") {
+      const updatedMap = data.filter(
+        (value) =>
+          parseInt(value.distance.replace(" km", "").replace(",", "")) <= 200000
+      );
+      return JSON.stringify(updatedMap);
+    } else return JSON.stringify(data);
+  }
+
+  useEffect(() => {
+    const dropdown = document.getElementById("dropdown-parent");
+    const dropdownOption1 = document.getElementById("test1");
+    const dropdownOption2 = document.getElementById("test2");
+    if (dropdownOption2 && dropdownOption1 !== null) {
+      dropdownOption1?.addEventListener("click", () => {
+        setTimeout(() => {
+          setValue(dropdown.getAttribute("selected-text"));
+        });
+      });
+      dropdownOption2?.addEventListener("click", () => {
+        setTimeout(() => {
+          setValue(dropdown.getAttribute("selected-text"));
+        });
+      });
+    }
+    filterArray();
+  }, []);
 
   return (
     <>
       <div className="sdds-block sdds-block__onwhite">
-        <sdds-dropdown placeholder="Select distance" id="dropdownExample">
-          <sdds-dropdown-option value="option-1" onClick={() => handleClick1()}>
-            {"<=200.000 km"}
-          </sdds-dropdown-option>
-          <sdds-dropdown-option value="option-2" onClick={() => handleClick1()}>
-            {">200.000 km"}
-          </sdds-dropdown-option>
-        </sdds-dropdown>
-
-        <sdds-table
-          body-data='[{"driver":"Marcus Lundberg","company":"Aris FC","distance": 75044,"score": 52},
-  {
-    "driver": "Marcus Mena Pachero",
-    "company": "Lio LTD",
-    "distance": 129417,
-    "score": 95
-  },
-  {
-    "driver": "Valentine Ichtertz",
-    "company": "LOTS Group",
-    "distance": 244656,
-    "score": 67
-  },
-  {
-    "driver": "Niklas Rosén",
-    "company": "DD Interactive",
-    "distance": 200000,
-    "score": 78
-  }
-]'
-        >
+        <div className="dropdown-wrapper">
+          <sdds-dropdown placeholder="Select distance" id="dropdown-parent">
+            <sdds-dropdown-option id="test1" value="option-1">
+              {"<=200.000 km"}
+            </sdds-dropdown-option>
+            <sdds-dropdown-option id="test2" value="option-2">
+              {">200.000 km"}
+            </sdds-dropdown-option>
+          </sdds-dropdown>
+        </div>
+        <sdds-table body-data={filterArray()}>
           <sdds-header-cell
             column-key="driver"
             column-title="Driver"
@@ -58,10 +73,6 @@ export const MainContent = () => {
           ></sdds-header-cell>
         </sdds-table>
       </div>
-
-      {/*   {DriverEvaluations.map((driver) => {
-        return <div key={driver.id}></div>;
-      })} */}
     </>
   );
 };
