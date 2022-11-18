@@ -1,3 +1,7 @@
+body {
+  background-color: var(--sdds-grey-50);
+}
+
 #class {
   color: var(--sdds-blue-900);
   font-weight: bolder;
@@ -8,6 +12,28 @@
 #header {
 }
 
+.dropdown-reset-wrapper {
+  display: flex;
+  align-items: baseline;
+  margin-bottom: 10px;
+}
+
 .dropdown-wrapper {
   width: 208px;
+}
+
+#btn {
+  border: 0px;
+  background-color: var(--sdds-grey-50);
+  text-decoration: underline;
+  cursor: hand;
+  cursor: pointer;
+  color: var(--sdds-blue-500);
+  text-align: center;
+  margin: 20px;
+  font-size: medium;
+}
+
+#main-wrapper {
+  margin: 20px;
 }

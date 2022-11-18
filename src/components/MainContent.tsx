@@ -1,7 +1,9 @@
-// @ts-nocheck
-
 import { useEffect, useState } from "react";
 import data from "../data.json";
+
+interface Test extends Element {
+  resetOption: () => void;
+}
 
 export const MainContent = () => {
   const [value, setValue] = useState("");
@@ -29,31 +31,59 @@ export const MainContent = () => {
     if (dropdownOption2 && dropdownOption1 !== null) {
       dropdownOption1?.addEventListener("click", () => {
         setTimeout(() => {
-          setValue(dropdown.getAttribute("selected-text"));
+          if (dropdown) {
+            const element = dropdown.getAttribute("selected-text");
+            if (element) {
+              setValue(element);
+            }
+          }
         });
       });
       dropdownOption2?.addEventListener("click", () => {
         setTimeout(() => {
-          setValue(dropdown.getAttribute("selected-text"));
+          if (dropdown) {
+            const element = dropdown.getAttribute("selected-text");
+            if (element) {
+              setValue(element);
+            }
+          }
         });
       });
     }
     filterArray();
   }, []);
 
+  function reset() {
+    const dropdownReset: Test | null =
+      document.querySelector("#dropdown-parent");
+    if (dropdownReset) {
+      dropdownReset.resetOption();
+    }
+    setValue("");
+    filterArray();
+  }
+
+  console.log("Data: ", JSON.stringify(data));
+
   return (
     <>
-      <div className="sdds-block sdds-block__onwhite">
-        <div className="dropdown-wrapper">
-          <sdds-dropdown placeholder="Select distance" id="dropdown-parent">
-            <sdds-dropdown-option id="test1" value="option-1">
-              {"<=200.000 km"}
-            </sdds-dropdown-option>
-            <sdds-dropdown-option id="test2" value="option-2">
-              {">200.000 km"}
-            </sdds-dropdown-option>
-          </sdds-dropdown>
+      <div className="sdds-block sdds-block__onwhite" id="main-wrapper">
+        <div className="dropdown-reset-wrapper">
+          <div className="dropdown-wrapper">
+            <sdds-dropdown placeholder="Select distance" id="dropdown-parent">
+              <sdds-dropdown-option id="test1" value="option-1">
+                {"<=200.000 km"}
+              </sdds-dropdown-option>
+              <sdds-dropdown-option id="test2" value="option-2">
+                {">200.000 km"}
+              </sdds-dropdown-option>
+            </sdds-dropdown>
+          </div>
+          <button id="btn" onClick={reset}>
+            Reset
+          </button>
         </div>
+
         <sdds-table body-data={filterArray()}>
           <sdds-header-cell
             column-key="driver"
