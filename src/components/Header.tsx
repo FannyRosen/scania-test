@@ -12,7 +12,7 @@ export const Header = () => {
           <a className="sdds-nav__item sdds-nav__app-logo" href="#"></a>
         </div>
       </nav>
-      <div className="sdds-block sdds-block__ongrey" id="class">
+      <div className="sdds-block sdds-block__ongrey" id="subheader">
         Driver Evaluation
       </div>
     </>

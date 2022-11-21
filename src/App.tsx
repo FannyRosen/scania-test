@@ -3,6 +3,7 @@ import logo from "./logo.svg";
 import "./App.css";
 import { Header } from "./components/Header";
 import { MainContent } from "./components/MainContent";
+import { Footer } from "./components/Footer";
 
 function App() {
   return (
@@ -10,6 +11,7 @@ function App() {
       <sdds-theme>
         <Header />
         <MainContent />
+        <Footer />
       </sdds-theme>
     </div>
   );
