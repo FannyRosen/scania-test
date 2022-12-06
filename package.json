@@ -8,7 +8,7 @@
     "@fortawesome/free-regular-svg-icons": "^6.2.1",
     "@fortawesome/free-solid-svg-icons": "^6.2.1",
     "@fortawesome/react-fontawesome": "^0.2.0",
-    "@scania/components": "^4.10.1",
+    "@scania/components": "^4.10.2",
     "@scania/icons": "^1.1.1",
     "@scania/theme-light": "^4.4.1",
     "@testing-library/jest-dom": "^5.16.5",

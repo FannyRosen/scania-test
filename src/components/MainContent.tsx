@@ -6,17 +6,17 @@ interface Test extends Element {
 }
 
 export const MainContent = () => {
-  const [value, setValue] = useState("");
+  const [filterBy, setFilterBy] = useState("");
   const ref = useRef(null);
 
   function filterArray() {
-    if (value === ">200.000 km") {
+    if (filterBy === ">200.000 km") {
       const updatedMap = data.filter(
         (value) =>
           parseInt(value.distance.replace(" km", "").replace(",", "")) > 200000
       );
       return JSON.stringify(updatedMap);
-    } else if (value === "<=200.000 km") {
+    } else if (filterBy === "<=200.000 km") {
       const updatedMap = data.filter(
         (value) =>
           parseInt(value.distance.replace(" km", "").replace(",", "")) <= 200000
@@ -26,31 +26,6 @@ export const MainContent = () => {
   }
 
   useEffect(() => {
-    const dropdown = document.getElementById("dropdown-parent");
-    const dropdownOption1 = document.getElementById("test1");
-    const dropdownOption2 = document.getElementById("test2");
-    if (dropdownOption2 && dropdownOption1 !== null) {
-      dropdownOption1?.addEventListener("click", () => {
-        setTimeout(() => {
-          if (dropdown) {
-            const element = dropdown.getAttribute("selected-text");
-            if (element) {
-              setValue(element);
-            }
-          }
-        });
-      });
-      dropdownOption2?.addEventListener("click", () => {
-        setTimeout(() => {
-          if (dropdown) {
-            const element = dropdown.getAttribute("selected-text");
-            if (element) {
-              setValue(element);
-            }
-          }
-        });
-      });
-    }
     filterArray();
   }, []);
 
@@ -60,7 +35,7 @@ export const MainContent = () => {
     if (dropdownReset) {
       dropdownReset.resetOption();
     }
-    setValue("");
+    setFilterBy("");
     filterArray();
   }
 
@@ -113,7 +88,7 @@ export const MainContent = () => {
                 id="test1"
                 value="option-1"
                 onClick={() => {
-                  console.log("test");
+                  setFilterBy("<=200.000 km");
                 }}
               >
                 {"<=200.000 km"}
@@ -122,7 +97,7 @@ export const MainContent = () => {
                 id="test2"
                 value="option-2"
                 onClick={() => {
-                  console.log("test");
+                  setFilterBy(">200.000 km");
                 }}
               >
                 {">200.000 km"}
